@@ -33,5 +33,5 @@ if choice == '2':
     choice1 = input('Do you want compare between running configuration and offline configuration? [y] or [n]')
     if choice1 == 'y':
         file = open('config-local.txt', "r")
-        for diff in dl.context_diff(running_config.split('/n'), file.readlines())
-        print(diff)
+        diff = difflib.ndiff(running_config.split('/n'), file.readlines())
+        print(''.join(diff),)
