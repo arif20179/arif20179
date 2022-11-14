@@ -30,5 +30,8 @@ if choice == '2':
     router = netmiko.ConnectHandler(**connection)
     router.enable()
     running_config = router.send_command('show running-config')
-    choice1 = input('Do you want compare between running configuration and offline configuration? [Y] or [N]')
-    file = open('config-local.txt', "r")
+    choice1 = input('Do you want compare between running configuration and offline configuration? [y] or [n]')
+    if choice1 == 'y':
+        file = open('config-local.txt', "r")
+        for diff in dl.context_diff(running_config.split('/n'), file.readlines())
+        print(diff)
