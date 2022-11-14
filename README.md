@@ -18,6 +18,8 @@ if choice == '1':
     router.enable()
     running_config = router.send_command('show running-config')
     startup_config = router.send_command('show startup-config')
+    for diff in dl.context_diff(running_config.split('/n'), startup_config.split('/n')):
+        print(diff)
 
 
 
